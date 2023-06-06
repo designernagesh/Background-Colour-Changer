@@ -1,10 +1,10 @@
-import { Heading, Flex, Select, Button } from "@chakra-ui/react";
+import { Container, Box, Heading } from "@chakra-ui/react";
 import { useState } from "react";
+import BgForm from "./components/BgForm";
 
 function App() {
-  const colors = ['aqua', 'black', 'blue', 'fuchsia', 'gray', 'green', 'lime', 'maroon', 'navy', 'olive', 'purple', 'red', 'silver', 'teal', 'white', 'yellow'];
   const [bgColor, setBgColor] = useState("");
-  
+
   const changeHandler = e => {
     setBgColor(e.target.value);
   }
@@ -14,24 +14,14 @@ function App() {
   }
 
   return (
-    <>
-      <Heading as="h1" align="center" my="20px">Background Colour Changer</Heading>
-      <Heading align="center" fontSize={18} mb="50px">The Background Color is: { bgColor ? bgColor : "No Color Slected" }</Heading>
-        <form onSubmit={ submitHandler }>
-          <Flex boxShadow='lg' w='500px' rounded='md' bg='white' p="20px" m="0 auto">
-              <Select onChange={ changeHandler } placeholder='Select Bg Color' mr="10px" borderWidth={2} borderColor="teal.400">
-                {
-                  colors.map(color => {
-                    return (
-                      <option value={color}>{color}</option>
-                    )
-                  })
-                }
-              </Select>
-              <Button type="submit" borderTopRadius="md" colorScheme='teal' width='100%'>Change Bg Color</Button>
-          </Flex>
-        </form>
-    </>
+    <Container maxW='5xl' mt='30px'>
+      <Box boxShadow='lg' p='6' rounded='md' bg='white'>
+        <Heading as='h1' fontSize='72px' mb='20px' color='#ec1839' align='center'>
+        Background Colour Changer
+        </Heading>        
+        <BgForm bgColor={bgColor} changeHandler={changeHandler} submitHandler={submitHandler} />
+      </Box>
+    </Container>
   );
 }
 
